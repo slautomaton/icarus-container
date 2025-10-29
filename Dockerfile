@@ -1,4 +1,4 @@
-FROM ubuntu:25.04
+FROM ubuntu:25.10
 
 # Default Environment Vars
 ENV SERVERNAME="Icarus Server"
