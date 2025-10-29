@@ -64,6 +64,7 @@ RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar 
 # Changing to Steam
 
 USER steam
+
 ENTRYPOINT ["/bin/bash"]
 CMD ["/runicarus.sh"]
 
