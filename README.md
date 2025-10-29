@@ -1,16 +1,14 @@
+Fork of Nerodon's Icarus Container
+
+Minor edits as of 10/28/2025:
+
+1. Docker Image file creates steam (non root) user but didn't change to the newly created non root user before invoking icarusrun.sh. Docker compose will create everything as root upon running the sh script. As such, the ServerSettings.ini are owned by root but the game is launched as steam (non root) - creating a race condition where after chown/chmodding ServerSettings.ini away from root to your custom UID/GID, docker compose restart or compose up/down cycle will not be able to read the updated ServerSetting.ini and will default/fall back an open server config, ignoring your ServerSettings altogether. Restarting the container will not overwrite the existing ServerSettings.ini either. I solve by changing to user steam before entry point in the image file.
+2. LargeStoneRespawn variable is misspelled and doesn't match the supported value - its "LargeStonesRespawn" not "LargeStoneRespawn". Stones are plural, not singular.
+3. Updated Compose file for my exact use case. FYI, nero's example compose file declarative mounts to name volumes within the container itself. Since i'm modding and want to load an existing save, I traditionally want the container to write its files to volumes on the host where I can directly edit over SSH/SCP.  
 
 
-![Docker Pulls](https://img.shields.io/docker/pulls/nerodon/icarus-dedicated)
-![Docker Stars](https://img.shields.io/docker/stars/nerodon/icarus-dedicated)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/nerodon/icarus-dedicated/latest)
-![GitLab (self-managed)](https://img.shields.io/gitlab/license/fred-beauch/icarus-dedicated-server)
 
 
-
-For assistance, message **@Nerodon** on the official Icarus Discord or open an issue on Gitlab
-
-[<img src="https://img.shields.io/badge/Discord-Linux_Docker_Support-7289da?logo=discord&logoColor=white">](https://discord.com/channels/715761957667602502/1048852109996593172)
-[<img src="https://img.shields.io/badge/Repository-Gitlab-orange?logo=gitlab">](https://gitlab.com/fred-beauch/icarus-dedicated-server)
 
 
 
@@ -41,7 +39,7 @@ Refer to https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config
 |SAVEGAMEONEXIT| Whether to force save when the game exits (True/False)
 |GAMESAVEFREQUENCY| How many seconds between each save
 |FIBERFOLIAGERESPAWN| Whether to have foliage that was removed respawns over time (True/False) (can help with performance)
-|LARGESTONERESPAWN|  Whether to have large stones that have been mined to respawn over time (True/False) (can help with performance)
+|LARGESTONESRESPAWN|  Whether to have large stones that have been mined to respawn over time (True/False) (can help with performance)
 
 ## Ports
 The server requires 2 UDP Ports, the game port (Default 17777) and the query port (Default 27015)
@@ -73,8 +71,9 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - data:/home/steam/.wine/drive_c/icarus
-      - game:/game/icarus
+      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus ## this is where you load your prospect.json file to continue a previous game.
+      - /host/path/to/folder/game:/game/icarus ## game binaries will install here. SSH into your host folder and add Mods here. 
+      - /host/path/to/folder:/drive_c/icarus/Saved/Config/WindowsServer ### mounts to host folder - container will write ServerSettings.ini here  
     environment:
       - SERVERNAME=myAmazingServer
       - BRANCH=public
@@ -85,10 +84,6 @@ services:
       - STEAM_USERID=1000
       - STEAM_GROUPID=1000
       - STEAM_ASYNC_TIMEOUT=60
-
-volumes:
-  data: {}
-  game: {}
  
 ```
 
@@ -109,4 +104,5 @@ MIT License
     ```bash
       echo "vm.max_map_count=262144" >> /etc/sysctl.conf && sysctl -p
     ```
+
   **Credit:** Thanks to Icarus discord user **Fabiryn** for the solution.
