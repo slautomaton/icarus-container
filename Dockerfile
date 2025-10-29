@@ -19,7 +19,7 @@ ENV RESUME_PROSPECT="True"
 ENV SAVEGAMEONEXIT=""
 ENV GAMESAVEFREQUENCY=""
 ENV FIBERFOLIAGERESPAWN=""
-ENV LARGESTONERESPAWN=""
+ENV LARGESTONESRESPAWN=""
 
 # Default User/Group ID
 ENV STEAM_USERID=1000
@@ -61,6 +61,9 @@ RUN chown -R "${STEAM_USERID}":"${STEAM_GROUPID}" /game/icarus
 
 # Install SteamCMD
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/steam/steamcmd -zx
+# Changing to Steam
 
+USER steam
 ENTRYPOINT ["/bin/bash"]
 CMD ["/runicarus.sh"]
+
