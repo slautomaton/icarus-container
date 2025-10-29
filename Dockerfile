@@ -51,7 +51,9 @@ RUN mkdir -p /root/icarus/drive_c/icarus \
 
 # Copy run script
 COPY runicarus.sh /
-RUN chmod +x sed -i 's/\r$//' /runicarus.sh
+# Convert line endings to LF
+RUN sed -i 's/\r$//' /runicarus.sh
+RUN chmod +x /runicarus.sh
 
 # Create Steam user
 RUN groupadd -o -g "${STEAM_GROUPID}" steam \
