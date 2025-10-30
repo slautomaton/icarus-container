@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM ubuntu:25.10
 
 # Default Environment Vars
 ENV SERVERNAME="Icarus Server"
