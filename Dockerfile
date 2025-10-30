@@ -1,18 +1,18 @@
-FROM ubuntu:24.04
+FROM debian:bookworm-slim
 
 # Default Environment Vars
 ENV SERVERNAME="Icarus Server"
 ENV PORT=17777
 ENV QUERYPORT=27015
-
-# Server Settings
-ENV JOIN_PASSWORD=""
-ENV MAX_PLAYERS=8
-ENV ADMIN_PASSWORD=""
 ENV SHUTDOWN_NOT_JOINED_FOR=-1
 ENV SHUTDOWN_EMPTY_FOR=-1
 ENV ALLOW_NON_ADMINS_LAUNCH="True"
 ENV ALLOW_NON_ADMINS_DELETE="False"
+ENV MAX_PLAYERS=8
+
+# Server Settings
+ENV JOIN_PASSWORD=""
+ENV ADMIN_PASSWORD=""
 ENV LOAD_PROSPECT=""
 ENV CREATE_PROSPECT=""
 ENV RESUME_PROSPECT="True"
@@ -32,17 +32,17 @@ ENV STEAM_ASYNC_TIMEOUT=60
 ENV BRANCH="public"
 
 # Get prereq packages
-RUN dpkg --add-architecture i386
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends --no-install-suggests \
-    ca-certificates \
-    curl \
-    lib32gcc-s1 \
-    sudo \
-    wine \
-    wine64
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/*
+RUN dpkg --add-architecture i386 && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        lib32gcc-s1 \
+        sudo \
+        wine \
+        wine64 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create various folders
 RUN mkdir -p /root/icarus/drive_c/icarus \ 
@@ -63,8 +63,6 @@ RUN chown -R "${STEAM_USERID}":"${STEAM_GROUPID}" /game/icarus
 
 # Install SteamCMD
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/steam/steamcmd -zx
-
-USER steam
 
 ENTRYPOINT ["/bin/bash"]
 CMD ["/runicarus.sh"]

@@ -1,0 +1,40 @@
+services:
+   icarus:
+    container_name: icarus
+    image: nerodon/icarus-dedicated:latest
+    hostname: icarus-dedicated
+    init: true
+    restart: "unless-stopped"
+    ports:
+      - 17777:17777/udp
+      - 27015:27015/udp
+    volumes:
+      - /home/icarus/ServerSettings.ini:/drive_c/icarus/Saved/Config/WindowsServer:ro
+      - /home/icarus/mods:/game/icarus/Icarus/Content/Paks/mods:ro
+      - /home/icarus/prospects:/home/steam/.wine/drive_c/icarus/Saved/PlayerData/DedicatedServer/Prospects
+      - game:/game/icarus
+      - data:/home/steam/.wine/drive_c/icarus
+    environment:
+      - SERVERNAME="Los Hermanos Dedicado"
+      - BRANCH=public
+      - PORT=17777
+      - QUERYPORT=27015
+      - JOIN_PASSWORD=bros
+      - ADMIN_PASSWORD=slau
+      - STEAM_USERID=1002
+      - STEAM_GROUPID=1002
+      - STEAM_ASYNC_TIMEOUT=60
+      - GAMESAVEFREQUENCY=300	
+      - FIBERFOLIAGERESPAWN=True	
+      - LARGESTONESRESPAWN=False
+      - LOADPROSPECT=YouGottaGive-OW-HARD.json
+      - LASTPROSPECTNAME=YouGottaGive-OW-HARD.json
+      - RESUMEPROSPECT=True
+      - SHUTDOWN_EMPTY_FOR=45
+      - SHUTDOWN_NOT_JOINED_FOR=45
+      - SAVEGAMEONEXIT=True
+volumes:
+  data: {}
+  game: {}
+
+ 

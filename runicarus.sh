@@ -183,7 +183,7 @@ function server_config () {
   echo ""
   echo "============================================================="
 
-  serverconfigdir="$STEAM_GAME_DIR/drive_c/icarus/Saved/Config/WindowsServer"
+  serverconfigdir="/home/steam/.wine/drive_c/icarus/Saved/Config/WindowsServer"
   serversettingsini="$serverconfigdir/ServerSettings.ini"
 
   # Ensure the server config dir exists
@@ -226,7 +226,7 @@ function server_config () {
   sed -i "/AllowNonAdminsToLaunchProspects=/c\AllowNonAdminsToLaunchProspects=${ALLOW_NON_ADMINS_LAUNCH}" ${serversettingsini}
   sed -i "/AllowNonAdminsToDeleteProspects=/c\AllowNonAdminsToDeleteProspects=${ALLOW_NON_ADMINS_DELETE}" ${serversettingsini}
   sed -i "/FiberFoliageRespawn=/c\FiberFoliageRespawn=${FIBERFOLIAGERESPAWN}" ${serversettingsini}
-  sed -i "/LargeStonesRespawn=/c\LargeStonesRespawn=${LARGESTONERESPAWN}" ${serversettingsini}
+  sed -i "/LargeStonesRespawn=/c\LargeStonesRespawn=${LARGESTONESRESPAWN}" ${serversettingsini}
   sed -i "/GameSaveFrequency=/c\GameSaveFrequency=${GAMESAVEFREQUENCY}" ${serversettingsini}
   sed -i "/SaveGameOnExit=/c\SaveGameOnExit=${SAVEGAMEONEXIT}" ${serversettingsini}
 
