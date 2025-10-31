@@ -67,8 +67,7 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## this is where you load your prospect.json file to continue a previous game. SSH into your host and cd into the host mount directory, create the prospects folder at the following path Saved/PlayerData/DedicatedServer/Prospects. Use SCP to copy the json from your previous save into the this folder. W
-      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## mounts to host folder - container will write ServerSettings.ini at Saved/Config/WindowsServer  
+      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## this is where you load your prospect.json file to continue a previous game. SSH into your host and cd into the host mount directory, create the prospects folder at the following path Saved/PlayerData/DedicatedServer/Prospects. Use SCP to copy the json from your previous save into the this folder. Container will write ServerSettings.ini at Saved/Config/WindowsServer  
       - /host/path/to/folder/game:/game/icarus ## game binaries will install here insider the container. SSH into your host folder and add Mods here. /Icarus/Content/Paks/mods
       - /host/path/to/folder/logs:/home/steam/Steam/logs ## steamcmd logs written here
     environment:
@@ -103,3 +102,4 @@ MIT License
     ```
 
   **Credit:** Thanks to Icarus discord user **Fabiryn** for the solution. Thanks to Nerodon for building this first.
+
