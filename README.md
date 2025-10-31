@@ -2,8 +2,8 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/slautomaton/icarus?style=plastic)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/slautomaton/icarus/latest?arch=amd64&style=plastic)
 
+[![01.Check Build Push and Scan Docker Image](https://github.com/slautomaton/icarus/actions/workflows/01.Check%20Build%20Push%20Scan.yml/badge.svg?branch=main)](https://github.com/slautomaton/icarus/actions/workflows/01.Check%20Build%20Push%20Scan.yml)
 ![GitHub last commit](https://img.shields.io/github/last-commit/slautomaton/icarus?style=plastic)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/ci.yml?branch=main&style=plastic)
 ![GitHub License](https://img.shields.io/github/license/slautomaton/icarus?style=plastic)
 
 # Fork of Nerodon's Icarus Container

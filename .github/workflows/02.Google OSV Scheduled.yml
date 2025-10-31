@@ -12,17 +12,11 @@ permissions:
   contents: read
 
 jobs:
-  osv-scan:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
-      - name: Run OSV Scanner
-        uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.2.4
-        with:
-          scan-args: |-
-            --results-file-name=osv-results.sarif
-            --upload-sarif:true
+  osv-scheduled-scan:
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.2.4
+    with:
+      scan-args: |-
+        --results-file-name=osv-results.sarif
+        --upload-sarif:true
+  
 
