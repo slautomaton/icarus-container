@@ -10,9 +10,9 @@
 
 ### Core Differences as of 10/31/2025:
 
-1. Updated Nerodon's 'runicarus.sh' script to write 'ServerSettings.ini' into config directory at /home/steam/.wine/*, NOT into the directory where binaries are installed. This is fixes some confusion around Rocketwertz's documentation instructing dedicated server configurers to write 'ServerSettings.ini' into the installation binaries, where the game no longer reads. 
+1. Updated Nerodon's  **`runicarus.sh`** script to write **`ServerSettings.ini`** into config directory at /home/steam/.wine/*, NOT into the directory where binaries are installed. This is fixes some confusion around Rocketwertz's documentation instructing dedicated server configurers to write **`ServerSettings.ini`** into the installation binaries, where the game no longer reads. 
 2. Added timezone support via tzdata and TZINFO env variable
-3. Added sample instruction set to use '.env' for preventing passing hardcoded passwords into build config metadata
+3. Added sample instruction set to use **`.env`** for preventing passing hardcoded passwords into build config metadata
 4. Added mount path on host to get to container logs faster
 5. Updated mount paths to reflect location of where settings, mods, and prospect files should be.
 6. Added CI github actions so I can learn
@@ -91,27 +91,32 @@ services:
 ```
 
 ## Security
-We should not hard code passwords into configs like above. We can/should use a '.env' file for our passwords. In the same working directory as your 'docker-compose.yml':
+We should not hard code passwords into configs like above. We can/should use a **`.env`** file for our passwords. 
+
+In the same working directory as your **`docker-compose.yml`**:
 
 ```bash
 touch .env
 nano .env
 ```
-'.env' contents should simply be:
+
+**`.env`** contents should simply be:
 
 ```yaml
 JOIN_PASSWORD=mypassword
 ADMIN_PASSWORD=mysupersecretpassword
 ```
-update your 'docker-compose.yml' to pick up '.env' variables:
+
+Update your **`docker-compose.yml`** to pick up **`.env`** variables:
 
 ```yaml
 - JOIN_PASSWORD=${JOIN_PASSWORD}
 - ADMIN_PASSWORD=${ADMIN_PASSWORD}
 ```
-use ```bash docker compose config --environment ``` to verify variables are picked up.
 
-Note: stick with '.env'. This method doesn't work with named environmental files like 'example.env'. Also update your '.gitignore' and '.dockerignore' to include /.env* so that you dont upload your passwords into your repos.
+Finally, use ```bash docker compose config --environment ``` to verify variables are picked up.
+
+Note: stick with **`.env`**. Named environmental files like **`example.env`** will not work. Also update your **`.gitignore`** and **`.dockerignore`** to include /.env* so that you dont upload your passwords into your repos.
 
 ## License
 MIT License
