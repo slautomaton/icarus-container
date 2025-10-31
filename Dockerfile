@@ -9,6 +9,8 @@ ENV SHUTDOWN_EMPTY_FOR=-1
 ENV ALLOW_NON_ADMINS_LAUNCH="True"
 ENV ALLOW_NON_ADMINS_DELETE="False"
 ENV MAX_PLAYERS=8
+ENV TZINFO="America/Los Angeles"
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Server Settings
 ENV JOIN_PASSWORD=""
@@ -40,7 +42,10 @@ RUN dpkg --add-architecture i386 && \
         lib32gcc-s1 \
         sudo \
         wine \
-        wine64 && \
+        wine64 \
+        tzdata && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZINFO > /etc/timezone && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

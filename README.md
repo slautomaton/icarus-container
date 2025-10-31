@@ -34,10 +34,11 @@ Refer to https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config
 |STEAM_GROUPID| Linux Group ID on the HOST used by the container steam user and volumes|1000
 |STEAM_ASYNC_TIMEOUT| Sets the Async timeout to this value in the Engine.ini on server start in SECONDS| 60
 |BRANCH| Version branch (public or experimental)| public
-|SAVEGAMEONEXIT| Whether to force save when the game exits (True/False)
+|SAVEGAMEONEXIT| Whether to force save when the game exits (True/False) | True
 |GAMESAVEFREQUENCY| How many MINUTES between each save
 |FIBERFOLIAGERESPAWN| Whether to have foliage that was removed respawns over time (True/False) (can help with performance)
 |LARGESTONESRESPAWN|  Whether to have large stones that have been mined to respawn over time (True/False) (can help with performance)
+|TZINFO| Time Zone (lookup params for tzdata) | "America/Los Angeles"
 
 ## Ports
 The server requires 2 UDP Ports, the game port (Default 17777) and the query port (Default 27015)
@@ -69,7 +70,7 @@ services:
       - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## this is where you load your prospect.json file to continue a previous game. SSH into your host and cd into the host mount directory, create the prospects folder at the following path Saved/PlayerData/DedicatedServer/Prospects. Use SCP to copy the json from your previous save into the this folder. W
       - host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## mounts to host folder - container will write ServerSettings.ini at Saved/Config/WindowsServer  
       - /host/path/to/folder/game:/game/icarus ## game binaries will install here insider the container. SSH into your host folder and add Mods here. /Icarus/Content/Paks/mods
-     #
+      - /host/path/to/folder/logs:/home/steam/Steam/logs ## steamcmd logs written here
     environment:
       - SERVERNAME=myAmazingServer
       - BRANCH=public
