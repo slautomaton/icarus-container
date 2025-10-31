@@ -30,6 +30,7 @@ services:
       - SHUTDOWN_EMPTY_FOR=-1
       - SHUTDOWN_NOT_JOINED_FOR=-1
       - SAVEGAMEONEXIT=True
+      - TZINFO="America/Los_Angeles"
 
 
  

@@ -9,7 +9,7 @@ ENV SHUTDOWN_EMPTY_FOR=-1
 ENV ALLOW_NON_ADMINS_LAUNCH="True"
 ENV ALLOW_NON_ADMINS_DELETE="False"
 ENV MAX_PLAYERS=8
-ENV TZINFO="America/Los Angeles"
+ENV TZINFO=America/Los_Angeles
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Server Settings
@@ -44,7 +44,7 @@ RUN dpkg --add-architecture i386 && \
         wine \
         wine64 \
         tzdata && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    ln -snf /usr/share/zoneinfo/$TZINFO /etc/localtime && \
     echo $TZINFO > /etc/timezone && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
