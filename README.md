@@ -10,7 +10,11 @@
 
 ### Core Differences as of 10/31/2025:
 
+<<<<<<< HEAD
 1. Updated Nerodon's  **`runicarus.sh`** script to write **`ServerSettings.ini`** into config directory at /home/steam/.wine/*, NOT into the directory where binaries are installed. This is fixes some confusion around Rocketwertz's documentation instructing dedicated server configurers to write **`ServerSettings.ini`** into the installation binaries, where the game no longer reads. 
+=======
+1. Updated Nerodon's 'runicarus.sh' script to write 'ServerSettings.ini' into config directory at /home/steam/.wine/*, NOT into the directory where binaries are installed. This fixes some confusion around Rocketwertz's documentation instructing dedicated server configurers to write 'ServerSettings.ini' into the installation binaries, where the game no longer reads. 
+>>>>>>> d577909227cc45ba08d515445dedbb32306d2c96
 2. Added timezone support via tzdata and TZINFO env variable
 3. Added sample instruction set to use **`.env`** for preventing passing hardcoded passwords into build config metadata
 4. Added mount path on host to get to container logs faster
@@ -141,3 +145,4 @@ MIT License
 ### Thanks to Nerodon for building this first, and setting a license that lets me upskill.
 
 See his repo here: https://gitlab.com/fred-beauch/icarus-dedicated-server
+
