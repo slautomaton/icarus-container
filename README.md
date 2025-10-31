@@ -90,7 +90,7 @@ We should not hard code passwords into configs like above. We can/should use a '
 touch .env
 nano .env
 ```
-'env' contents should simply be:
+'.env' contents should simply be:
 
 ```yaml
 JOIN_PASSWORD=mypassword
