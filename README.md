@@ -1,16 +1,23 @@
 ![Docker Image Version](https://img.shields.io/docker/v/slautomaton/icarus?arch=amd64&style=plastic)
 ![Docker Pulls](https://img.shields.io/docker/pulls/slautomaton/icarus?style=plastic)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/slautomaton/icarus/latest?arch=amd64&style=plastic)
-![Docker Automated build](https://img.shields.io/docker/automated/slautomaton/icarus?style=plastic)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/slautomaton/icarus?style=plastic)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/ci.yml?branch=main&style=plastic)
 ![GitHub License](https://img.shields.io/github/license/slautomaton/icarus?style=plastic)
 
-Fork of Nerodon's Icarus Container
+# Fork of Nerodon's Icarus Container
 
-Minor edits as of 10/31/2025:
+### Core Differences as of 10/31/2025:
 
-1. Updated .sh script to write ServerSettings.ini into proper config directory at /home/steam/.wine/*, NOT into the directory where binaries are installed. This is contrary to Rocketwertz's documentation because their documentation hasn't been updated.
+1. Updated Nerodon's 'runicarus.sh' script to write 'ServerSettings.ini' into config directory at /home/steam/.wine/*, NOT into the directory where binaries are installed. This is fixes some confusion around Rocketwertz's documentation instructing dedicated server configurers to write 'ServerSettings.ini' into the installation binaries, where the game no longer reads. 
+2. Added timezone support via tzdata and TZINFO env variable
+3. Added sample instruction set to use '.env' for preventing passing hardcoded passwords into build config metadata
+4. Added mount path on host to get to container logs faster
+5. Updated mount paths to reflect location of where settings, mods, and prospect files should be.
+6. Added CI github actions so I can learn
 
-# icarus-dedicated-server
+## icarus-dedicated-server containerized
 This dedicated server will automatically download/update to the latest available server version when the container starts or restarts. The dedicated server runs in Ubuntu 25.10 and wine64. With the number of env variables to set, I find it best to use docker-compose.yml. 
 
 ## Environment Vars
@@ -124,5 +131,8 @@ MIT License
       echo "vm.max_map_count=262144" >> /etc/sysctl.conf && sysctl -p
     ```
 
-  **Credit:** Thanks to Icarus discord user **Fabiryn** for the solution. Thanks to Nerodon for building this first.
+  **Credit:** Thanks to Icarus discord user **Fabiryn** for the solution. 
+  
+### Thanks to Nerodon for building this first, and setting a license that lets me upskill.
 
+See his repo here: https://gitlab.com/fred-beauch/icarus-dedicated-server
