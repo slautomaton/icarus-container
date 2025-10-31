@@ -3,7 +3,7 @@ name: 04.Trivy CVE Scan
 on:
   schedule:
     - cron: "20 2 * * SUN"
-
+  workflow_dispatch:
 jobs:
   docker:
     runs-on: ubuntu-latest

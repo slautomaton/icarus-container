@@ -3,7 +3,8 @@ name: 03.Docker Scout CVE Scan
 on:
   schedule:
     - cron: "15 2 * * SUN"
-
+  workflow_dispatch:
+    
 jobs:
   docker:
     runs-on: ubuntu-latest

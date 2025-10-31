@@ -3,6 +3,7 @@ name: 02.Google OSV Scheduled Scan
 on:
   schedule:
     - cron: "30 2 15,30 * *"
+  workflow_dispatch:
   push:
     branches: [main]
 
