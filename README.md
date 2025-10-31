@@ -1,11 +1,13 @@
 ![Docker Image Version](https://img.shields.io/docker/v/slautomaton/icarus?arch=amd64&style=plastic)
 ![Docker Pulls](https://img.shields.io/docker/pulls/slautomaton/icarus?style=plastic)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/slautomaton/icarus/latest?arch=amd64&style=plastic)
-![GitHub last commit](https://img.shields.io/github/last-commit/slautomaton/icarus?style=plastic)
 ![GitHub License](https://img.shields.io/github/license/slautomaton/icarus?style=plastic)
-
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/01.yml?style=plastic&logo=github&label=DevSecOps%20Check)
+![GitHub last commit](https://img.shields.io/github/last-commit/slautomaton/icarus?style=plastic)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/01.yml?style=plastic&logo=github&label=Build)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/02.yml?style=plastic&logo=google&label=OSV%20Scan%20Check)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/03.yml?style=plastic&logo=docker&label=Docker%20Scout)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/04.yml?style=plastic&logo=trivy&label=Trivy%20CVE)
+
 
 
 
