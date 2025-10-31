@@ -4,8 +4,10 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/slautomaton/icarus?style=plastic)
 ![GitHub License](https://img.shields.io/github/license/slautomaton/icarus?style=plastic)
 
-[![01.Check Build Push and Scan Docker Image](https://github.com/slautomaton/icarus/actions/workflows/01.Check%20Build%20Push%20Scan.yml/badge.svg?branch=main)](https://github.com/slautomaton/icarus/actions/workflows/01.Check%20Build%20Push%20Scan.yml)
-[![02.Google OSV Scheduled Scan](https://github.com/slautomaton/icarus/actions/workflows/02.Google%20OSV%20Scheduled.yml/badge.svg)](https://github.com/slautomaton/icarus/actions/workflows/02.Google%20OSV%20Scheduled.yml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/01.yml?style=plastic&logo=github&label=DevSecOps%20Check)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/02.yml?style=plastic&logo=google&label=OSV%20Scan%20Check)
+
+
 
 # Fork of Nerodon's Icarus Container
 
