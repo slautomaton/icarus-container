@@ -1,7 +1,7 @@
 services:
    icarus:
     container_name: icarus
-    image: nerodon/icarus-dedicated:latest
+    image: slautomaton/icarus:latest
     hostname: icarus-dedicated
     init: true
     restart: "unless-stopped"
@@ -9,32 +9,27 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - /home/icarus/ServerSettings.ini:/drive_c/icarus/Saved/Config/WindowsServer:ro
-      - /home/icarus/mods:/game/icarus/Icarus/Content/Paks/mods:ro
-      - /home/icarus/prospects:/home/steam/.wine/drive_c/icarus/Saved/PlayerData/DedicatedServer/Prospects
-      - game:/game/icarus
-      - data:/home/steam/.wine/drive_c/icarus
+      - /home/icarus/game:/game/icarus/Icarus/Content/Paks/
+      - /home/icarus/data:/home/steam/.wine/drive_c/icarus/Saved/PlayerData/DedicatedServer/Prospects
     environment:
-      - SERVERNAME="Los Hermanos Dedicado"
+      - SERVERNAME=
       - BRANCH=public
       - PORT=17777
       - QUERYPORT=27015
-      - JOIN_PASSWORD=bros
-      - ADMIN_PASSWORD=slau
-      - STEAM_USERID=1002
-      - STEAM_GROUPID=1002
+      - JOIN_PASSWORD=
+      - ADMIN_PASSWORD=
+      - STEAM_USERID=
+      - STEAM_GROUPID=
       - STEAM_ASYNC_TIMEOUT=60
-      - GAMESAVEFREQUENCY=300	
+      - GAMESAVEFREQUENCY=5
       - FIBERFOLIAGERESPAWN=True	
       - LARGESTONESRESPAWN=False
-      - LOADPROSPECT=YouGottaGive-OW-HARD.json
-      - LASTPROSPECTNAME=YouGottaGive-OW-HARD.json
+      - LOADPROSPECT=
+      - LASTPROSPECTNAME=
       - RESUMEPROSPECT=True
-      - SHUTDOWN_EMPTY_FOR=45
-      - SHUTDOWN_NOT_JOINED_FOR=45
+      - SHUTDOWN_EMPTY_FOR=-1
+      - SHUTDOWN_NOT_JOINED_FOR=-1
       - SAVEGAMEONEXIT=True
-volumes:
-  data: {}
-  game: {}
+
 
  
