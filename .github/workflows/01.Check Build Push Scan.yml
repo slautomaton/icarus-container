@@ -1,4 +1,4 @@
-name: Build Check
+name: 01.Check Build Push and Scan Docker Image
 
 on:
   push:
@@ -34,3 +34,22 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKERHUB_REPO }}:latest
           build-args: |
             BUILDKIT_DOCKERFILE_CHECK=skip=SecretsUsedInArgOrEnv
+
+      - name: Run Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@v0.30.0
+        with:
+          image-ref: '${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.DOCKER_HUB_REPO }}:latest'
+          format: 'table'
+          exit-code: 0
+          severity: 'CRITICAL,HIGH'   
+      
+      - name: Docker Scout CVEs
+        uses: docker/scout-action@v1
+        with:
+          command: cves
+          image: ${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.DOCKER_HUB_REPO }}:latest
+          only-severities: critical,high
+          only-fixed: true
+          write-comment: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          exit-code: true
