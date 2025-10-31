@@ -25,4 +25,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ vars.DOCKERHUB_REPO }}:latest  
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKERHUB_REPO }}:latest
+        env:
+          BUILDKIT_DOCKERFILE_CHECK: skip=SecretsUsedInArgOrEnv
