@@ -1,4 +1,4 @@
-name: Google OSV Scheduled Scan
+name: 02.Google OSV Scheduled Scan
 
 on:
   schedule:
