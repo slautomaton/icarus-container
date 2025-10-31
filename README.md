@@ -1,19 +1,25 @@
+![Docker Image Version](https://img.shields.io/docker/v/slautomaton/icarus?arch=amd64&style=plastic)
+![Docker Pulls](https://img.shields.io/docker/pulls/slautomaton/icarus?style=plastic)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/slautomaton/icarus/latest?arch=amd64&style=plastic)
+![Docker Automated build](https://img.shields.io/docker/automated/slautomaton/icarus?style=plastic)
+![GitHub License](https://img.shields.io/github/license/slautomaton/icarus?style=plastic)
+
 Fork of Nerodon's Icarus Container
 
-Minor edits as of 10/28/2025:
+Minor edits as of 10/31/2025:
 
 1. Updated .sh script to write ServerSettings.ini into proper config directory at /home/steam/.wine/*, NOT into the directory where binaries are installed. This is contrary to Rocketwertz's documentation because their documentation hasn't been updated.
 
 # icarus-dedicated-server
-This dedicated server will automatically download/update to the latest available server version when started. The dedicated server runs in Ubuntu rolling and wine64
+This dedicated server will automatically download/update to the latest available server version when the container starts or restarts. The dedicated server runs in Ubuntu 25.10 and wine64. With the number of env variables to set, I find it best to use docker-compose.yml. 
 
 ## Environment Vars
 Refer to https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config-&-Launch-Parameters for more detail on server configs
 | ENV Var | Description| Default Value if unspecified|
 |---------|------------|-----------------------------|
 |SERVERNAME| The name of the server on the server browser| Icarus Server
-|PORT| The game port| 17777
-|QUERYPORT| The query port| 27015
+|PORT| The game port| 17777/udp
+|QUERYPORT| The Steam discoverability port| 27015/udp
 |MAX_PLAYERS|Max Players that can be on the server at once. Minimum 1, Maximum 8|8
 |JOIN_PASSWORD|Password required to join the server. Leave empty to not use a password.|
 |ADMIN_PASSWORD|Password required for using admin RCON commands.<br /> **NOTE:** Do not leave empty, otherwise any player can have RCON admin access by default. 
@@ -45,14 +51,14 @@ They can be changed by specifying the PORT and QUERYPORT env vars respectively.
 
 ## Example Docker Run
 ```bash
-docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/home/steam/.wine/drive_c/icarus -v game:/game/icarus -e SERVERNAME=AmazingServer -e JOIN_PASSWORD=mypassword -e ADMIN_PASSWORD=mysupersecretpassword  nerodon/icarus-dedicated:latest
+docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/home/steam/.wine/drive_c/icarus -v game:/game/icarus -e SERVERNAME=AmazingServer -e JOIN_PASSWORD=mypassword -e ADMIN_PASSWORD=mysupersecretpassword  slautomaton/icarus:latest
 ```
 ## Example Docker Compose
 ```yaml
 services:
   icarus:
     container_name: icarus-dedicated
-    image: nerodon/icarus-dedicated:latest
+    image: slautomaton/icarus:latest
     hostname: icarus-dedicated
     init: true
     restart: "unless-stopped"
@@ -62,7 +68,7 @@ services:
     volumes:
       - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## this is where you load your prospect.json file to continue a previous game. SSH into your host and cd into the host mount directory, create the prospects folder at the following path Saved/PlayerData/DedicatedServer/Prospects. Use SCP to copy the json from your previous save into the this folder. W
       - host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## mounts to host folder - container will write ServerSettings.ini at Saved/Config/WindowsServer  
-      - /host/path/to/folder/game:/game/icarus ## game binaries will install here. SSH into your host folder and add Mods here. /Icarus/Content/Paks/mods
+      - /host/path/to/folder/game:/game/icarus ## game binaries will install here insider the container. SSH into your host folder and add Mods here. /Icarus/Content/Paks/mods
      #
     environment:
       - SERVERNAME=myAmazingServer
