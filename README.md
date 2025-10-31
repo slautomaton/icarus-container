@@ -38,7 +38,7 @@ Refer to https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config
 |GAMESAVEFREQUENCY| How many MINUTES between each save
 |FIBERFOLIAGERESPAWN| Whether to have foliage that was removed respawns over time (True/False) (can help with performance)
 |LARGESTONESRESPAWN|  Whether to have large stones that have been mined to respawn over time (True/False) (can help with performance)
-|TZINFO| Time Zone (lookup params for tzdata) | "America/Los Angeles"
+|TZINFO| Time Zone (lookup params for tzdata) | America/Los_Angeles
 
 ## Ports
 The server requires 2 UDP Ports, the game port (Default 17777) and the query port (Default 27015)
@@ -67,8 +67,7 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## this is where you load your prospect.json file to continue a previous game. SSH into your host and cd into the host mount directory, create the prospects folder at the following path Saved/PlayerData/DedicatedServer/Prospects. Use SCP to copy the json from your previous save into the this folder. W
-      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## mounts to host folder - container will write ServerSettings.ini at Saved/Config/WindowsServer  
+      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## this is where you load your prospect.json file to continue a previous game. SSH into your host and cd into the host mount directory, create the prospects folder at the following path Saved/PlayerData/DedicatedServer/Prospects. Use SCP to copy the json from your previous save into the this folder. Container will write ServerSettings.ini at Saved/Config/WindowsServer  
       - /host/path/to/folder/game:/game/icarus ## game binaries will install here insider the container. SSH into your host folder and add Mods here. /Icarus/Content/Paks/mods
       - /host/path/to/folder/logs:/home/steam/Steam/logs ## steamcmd logs written here
     environment:
@@ -81,8 +80,31 @@ services:
       - STEAM_USERID=1000
       - STEAM_GROUPID=1000
       - STEAM_ASYNC_TIMEOUT=60
- 
+
 ```
+
+## Security
+We should not hard code passwords into configs like above. We can/should use a '.env' file for our passwords. In the same working directory as your 'docker-compose.yml':
+
+```bash
+touch .env
+nano .env
+```
+'env' contents should simply be:
+
+```yaml
+JOIN_PASSWORD=mypassword
+ADMIN_PASSWORD=mysupersecretpassword
+```
+update your 'docker-compose.yml' to pick up '.env' variables:
+
+```yaml
+- JOIN_PASSWORD=${JOIN_PASSWORD}
+- ADMIN_PASSWORD=${ADMIN_PASSWORD}
+```
+use ```bash docker compose config --environment ``` to verify variables are picked up.
+
+Note: stick with '.env'. This method doesn't work with named environmental files like 'example.env'. Also update your '.gitignore' and '.dockerignore' to include /.env* so that you dont upload your passwords into your repos.
 
 ## License
 MIT License
