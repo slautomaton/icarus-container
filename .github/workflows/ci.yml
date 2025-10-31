@@ -20,13 +20,13 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           call: check
-        env:
-          BUILDKIT_DOCKERFILE_CHECK: skip=SecretsUsedInArgOrEnv
+          build-args: |
+            BUILDKIT_DOCKERFILE_CHECK=skip=SecretsUsedInArgOrEnv
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKERHUB_REPO }}:latest
-        env:
-          BUILDKIT_DOCKERFILE_CHECK: skip=SecretsUsedInArgOrEnv
+          build-args: |
+            BUILDKIT_DOCKERFILE_CHECK=skip=SecretsUsedInArgOrEnv
