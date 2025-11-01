@@ -79,8 +79,8 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## Create Saved/PlayerData/DedicatedServer/Prospects and upload your previous json save here. Cd
-                                                                    into Saved/Config/WindowsServer. Container will write ServerSettings.ini into it.
+      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## Create Saved/PlayerData/DedicatedServer/Prospects. and upload your previous json save here. Cd
+                                                                    ##into Saved/Config/WindowsServer. Container will write ServerSettings.ini here if you need to ## manually override.
       - /host/path/to/folder/game:/game/icarus ## game binaries will install here inside the container. From your mounted drive, create the /Icarus/Content/Paks/mods folder. That is where you upload your mod _P.paks or .EXMOD files (use the latter).
       - /host/path/to/folder/logs:/home/steam/Steam/logs ## Easier access to logs written on the container.
     environment:
@@ -147,6 +147,7 @@ MIT License
 ### Thanks to Nerodon for building this first, and setting a license that lets me upskill.
 
 See his repo here: https://gitlab.com/fred-beauch/icarus-dedicated-server
+
 
 
 
