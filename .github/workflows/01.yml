@@ -2,7 +2,9 @@ name: 01.Check Build Push To Docker
 
 on:
   push:
-
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/**.yml'
 jobs:
   docker:
     runs-on: ubuntu-latest
