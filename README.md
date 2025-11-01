@@ -25,7 +25,7 @@
 ## icarus-dedicated-server containerized
 This dedicated server will automatically download/update to the latest available server version when the container starts or restarts. The dedicated server runs in Ubuntu 25.10 and wine64. With the number of env variables to set, I find it best to use docker-compose.yml. 
 
-## Environment Vars
+## Environmental Variables
 Refer to https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config-&-Launch-Parameters for more detail on server configs
 | ENV Var | Description| Default Value if unspecified|
 |---------|------------|-----------------------------|
@@ -79,9 +79,10 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## this is where you load your prospect.json file to continue a previous game. SSH into your host and cd into the host mount directory, create the prospects folder at the following path Saved/PlayerData/DedicatedServer/Prospects. Use SCP to copy the json from your previous save into the this folder. Container will write ServerSettings.ini at Saved/Config/WindowsServer  
-      - /host/path/to/folder/game:/game/icarus ## game binaries will install here insider the container. SSH into your host folder and add Mods here. /Icarus/Content/Paks/mods
-      - /host/path/to/folder/logs:/home/steam/Steam/logs ## steamcmd logs written here
+      - /host/path/to/folder/data:/home/steam/.wine/drive_c/icarus/ ## Create Saved/PlayerData/DedicatedServer/Prospects and upload your previous json save here. Cd
+                                                                    ## into Saved/Config/WindowsServer. Container will write ServerSettings.ini into it.
+      - /host/path/to/folder/game:/game/icarus ## game binaries will install here inside the container. From your mounted drive, create the /Icarus/Content/Paks/mods                                                    ## folder. That is where you upload your mod _P.paks or .EXMOD files (use the latter).
+      - /host/path/to/folder/logs:/home/steam/Steam/logs ## Easier access to logs written on the container.
     environment:
       - SERVERNAME=myAmazingServer
       - BRANCH=public
@@ -146,4 +147,5 @@ MIT License
 ### Thanks to Nerodon for building this first, and setting a license that lets me upskill.
 
 See his repo here: https://gitlab.com/fred-beauch/icarus-dedicated-server
+
 
