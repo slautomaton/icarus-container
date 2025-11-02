@@ -16,17 +16,17 @@
 ### Core Differences as of 10/31/2025:
 
 1. Updated Nerodon's  **`runicarus.sh`** script to write **`ServerSettings.ini`** into config directory at /home/steam/.wine/*, NOT into the directory where binaries are installed. This fixes some confusion around Rocketwertz's documentation instructing dedicated server configurers to write **`ServerSettings.ini`** into the installation binaries, where the game no longer reads. 
-2. Added timezone support via tzdata and TZINFO env variable
-3. Added sample instruction set to use **`.env`** to prevent passing hardcoded passwords into build config metadata
-4. Added mount path on host to get to container logs faster
+2. Added timezone support via tzdata and TZINFO env variable.
+3. Added sample instruction set to use **`.env`** to prevent passing hardcoded passwords into build config metadata.
+4. Added mount path on host to get to container logs faster.
 5. Updated mount paths to reflect location of where settings, mods, and prospect files should be.
-6. Added CI github actions so I can learn
+6. Added CI github actions so I can learn.
 
 ## icarus-dedicated-server containerized
 This dedicated server will automatically download/update to the latest available server version when the container starts or restarts. The dedicated server runs in Ubuntu 25.10 and wine64. With the number of env variables to set, I find it best to use docker-compose.yml. 
 
 ## Environmental Variables
-Refer to https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config-&-Launch-Parameters for more detail on server configs
+Refer to https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config-&-Launch-Parameters for more detail on server configs.
 | ENV Var | Description| Default Value if unspecified|
 |---------|------------|-----------------------------|
 |SERVERNAME| The name of the server on the server browser| Icarus Server
@@ -147,6 +147,7 @@ MIT License
 ### Thanks to Nerodon for building this first, and setting a license that lets me upskill.
 
 See his repo here: https://gitlab.com/fred-beauch/icarus-dedicated-server
+
 
 
 
