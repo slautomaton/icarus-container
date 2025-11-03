@@ -2,11 +2,11 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/slautomaton/icarus?style=plastic&logo=docker&label=Docker%20Pulls)
 ![Docker Image Size](https://img.shields.io/docker/image-size/slautomaton/icarus?arch=amd64&style=plastic&logo=docker&label=Image%20Size)
 ![GitHub License](https://img.shields.io/github/license/slautomaton/icarus?style=plastic&logo=github)
-![GitHub last commit](https://img.shields.io/github/last-commit/slautomaton/icarus?style=plastic&logo=github&label=Last%20Commit)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/01.yml?style=plastic&logo=github&label=Build)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/02.yml?style=plastic&logo=google&label=OSV%20Scan%20Check)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/03.yml?style=plastic&logo=docker&label=Docker%20Scout)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slautomaton/icarus/04.yml?style=plastic&logo=trivy&label=Trivy%20CVE)
+![GitHub last commit](https://img.shields.io/github/last-commit/slauth82/icarus?style=plastic&logo=github&label=Last%20Commit)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slauth82/icarus/01.yml?style=plastic&logo=github&label=Build)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slauth82/icarus/02.yml?style=plastic&logo=google&label=OSV%20Scan%20Check)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slauth82/icarus/03.yml?style=plastic&logo=docker&label=Docker%20Scout)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/slauth82/icarus/04.yml?style=plastic&logo=trivy&label=Trivy%20CVE)
 
 
 
@@ -147,6 +147,7 @@ MIT License
 ### Thanks to Nerodon for building this first, and setting a license that lets me upskill.
 
 See his repo here: https://gitlab.com/fred-beauch/icarus-dedicated-server
+
 
 
 
