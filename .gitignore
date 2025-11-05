@@ -2,4 +2,3 @@
 *.json
 /.env*
 /.vs/*
-.github
